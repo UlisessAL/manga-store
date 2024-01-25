@@ -1,0 +1,54 @@
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+export default function MangaContainer({ manga }) {
+  return (
+    <View key={manga.id} style={styles.mangaContainer}>
+      <Image style={styles.mangaImage} source={manga.img} />
+      <Text style={styles.titleManga}>{manga.title}</Text>
+      <Text>Categoría: {manga.category}</Text>
+      <View style={styles.priceAndStock}>
+        <Text>${manga.price}</Text>
+        <Text>Stock: {manga.stock}</Text>
+      </View>
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.textButton}>Ver mas</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  mangaImage: {
+    width: 170,
+    height: 250,
+    borderRadius: 2,
+    objectFit: "cover",
+    maxHeight: "100%",
+  },
+  mangaContainer: {
+    padding: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1,
+  },
+  titleManga: {
+    maxWidth: 170,
+    flex: 1,
+  },
+  button: {
+    backgroundColor: "#A5243D",
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 5,
+    width: 170,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  priceAndStock: {
+    flexDirection: "row",
+    gap: 10,
+  },
+  textButton: {
+    color: "#F3F7F6",
+    fontSize: 16,
+  },
+});
