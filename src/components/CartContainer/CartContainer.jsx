@@ -23,7 +23,12 @@ export default function CartContainer({ cart, setCart }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tu carrito:</Text>
+      {cart.length === 0 ? (
+        <Text style={styles.title}>Tu carrito esta vacío</Text>
+      ) : (
+        <Text style={styles.title}>Tu carrito:</Text>
+      )}
+
       <ScrollView>
         {cart.map((manga) => (
           <View style={styles.mangaContainer} key={manga.id}>
