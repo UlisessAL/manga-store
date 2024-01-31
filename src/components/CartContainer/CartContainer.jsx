@@ -11,9 +11,14 @@ import ModalRemove from "../ModalRemove/ModalRemove";
 
 export default function CartContainer({ cart, setCart }) {
   const [isVisible, setIsVisible] = useState(false);
+  const [mangaSelected, setMangaSelected] = useState({});
   const handleRemove = (mangaId) => {
     let newCart = cart.filter((manga) => manga.id !== mangaId);
     setCart(newCart);
+  };
+  const handleSelect = (manga) => {
+    setIsVisible(!isVisible);
+    setMangaSelected(manga);
   };
 
   return (
@@ -21,7 +26,7 @@ export default function CartContainer({ cart, setCart }) {
       <Text style={styles.title}>Tu carrito:</Text>
       <ScrollView>
         {cart.map((manga) => (
-          <View style={styles.mangaContainer}>
+          <View style={styles.mangaContainer} key={manga.id}>
             <Image source={manga.img} style={styles.image} />
             <View style={styles.details}>
               <Text style={styles.mangaTitle}>{manga.title}</Text>
@@ -33,16 +38,16 @@ export default function CartContainer({ cart, setCart }) {
 
             <Pressable
               style={styles.removeItem}
-              onPress={() => setIsVisible(!isVisible)}
+              onPress={() => handleSelect(manga)}
             >
               <Text style={styles.deleteButtonText}>Eliminar</Text>
             </Pressable>
             <ModalRemove
               isVisible={isVisible}
-              mangaId={manga.id}
+              mangaId={mangaSelected.id}
               handleRemove={handleRemove}
               setIsVisible={setIsVisible}
-              mangaName={manga.title}
+              mangaName={mangaSelected.title}
             />
           </View>
         ))}
