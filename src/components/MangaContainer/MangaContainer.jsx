@@ -1,5 +1,22 @@
+import { useState } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
-export default function MangaContainer({ manga }) {
+export default function MangaContainer({ manga, setCart, cart }) {
+  const [buttonTitle, setButtonTitle] = useState("Agregar al carrito");
+  const handleAddToCart = () => {
+    let isInCart = cart.findIndex((itemInCart) => itemInCart.id === manga.id);
+    let newCart = [...cart];
+
+    if (isInCart !== -1) {
+      newCart[isInCart].quantity += 1;
+      setCart(newCart);
+    } else {
+      setCart((prevState) => [...prevState, manga]);
+    }
+    setButtonTitle("Añadido!");
+    setTimeout(() => {
+      setButtonTitle("Agregar al carrito");
+    }, 2000);
+  };
   return (
     <View key={manga.id} style={styles.mangaContainer}>
       <Image style={styles.mangaImage} source={manga.img} />
@@ -9,8 +26,8 @@ export default function MangaContainer({ manga }) {
         <Text>${manga.price}</Text>
         <Text>Stock: {manga.stock}</Text>
       </View>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.textButton}>Ver mas</Text>
+      <TouchableOpacity style={styles.button} onPress={handleAddToCart}>
+        <Text style={styles.textButton}>{buttonTitle}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -33,6 +50,8 @@ const styles = StyleSheet.create({
   titleManga: {
     maxWidth: 170,
     flex: 1,
+    fontWeight: "bold",
+    paddingTop: 10,
   },
   button: {
     backgroundColor: "#A5243D",
