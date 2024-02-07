@@ -63,7 +63,7 @@ export default function CartContainer({ cart, setCart }) {
 
 const styles = StyleSheet.create({
   container: {
-    height: 600,
+    height: 550,
     alignItems: "center",
     paddingTop: 30,
   },

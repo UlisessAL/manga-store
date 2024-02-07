@@ -4,9 +4,17 @@ import Constants from "expo-constants";
 import Home from "./src/screens/Home";
 import MangasCategorized from "./src/screens/MangasCategorized";
 import { useState } from "react";
+import { useFonts } from "expo-font";
+import { fonts } from "./src/global/fonts";
 
 export default function App() {
   const [categorySelected, setCategorySelected] = useState("");
+  const [fontsLoaded] = useFonts(fonts);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
       {categorySelected ? (

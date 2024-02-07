@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     alignSelf: "center",
     fontWeight: "bold",
+    fontFamily: "InterRegular",
   },
   container: {
     marginTop: Constants.statusBarHeight,

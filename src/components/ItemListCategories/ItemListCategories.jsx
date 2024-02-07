@@ -2,6 +2,7 @@ import { FlatList, StyleSheet } from "react-native";
 import MangaContainer from "../MangaContainer/MangaContainer";
 import { allMangas } from "../../dataMangas/dataMangas";
 import { useEffect, useState } from "react";
+import Search from "../Search/Search";
 export default function ItemListCategories({ setCart, cart, category }) {
   const [mangas, setMangas] = useState([]);
   const [keyword, setKeyword] = useState("");
@@ -22,6 +23,7 @@ export default function ItemListCategories({ setCart, cart, category }) {
 
   return (
     <>
+      <Search onSearch={setKeyword} />
       <FlatList
         style={styles.mangaContainer}
         data={mangas}
