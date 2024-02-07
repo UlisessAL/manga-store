@@ -1,16 +1,15 @@
 import { View, Text, StyleSheet } from "react-native";
-import { mangas } from "../dataMangas/dataMangas";
 import Constants from "expo-constants";
-import ListOfMangas from "../components/ListOfMangas/ListOfMangas";
 import ShowCart from "../components/CartContainer/ShowCart";
 import { useState } from "react";
+import ItemListCategories from "../components/ItemListCategories/ItemListCategories";
 
-export default function Main() {
+export default function MangasCategorized({ category }) {
   const [cart, setCart] = useState([]);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tienda de mangas</Text>
-      <ListOfMangas mangas={mangas} setCart={setCart} cart={cart} />
+      <ItemListCategories category={category} setCart={setCart} cart={cart} />
       <ShowCart cart={cart} setCart={setCart} />
     </View>
   );

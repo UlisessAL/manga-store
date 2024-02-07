@@ -4,12 +4,16 @@ import kaguyaSama from "../../assets/MangaImages/kaguyasama-tomo1.webp";
 import myHeroAcademia from "../../assets/MangaImages/myheroacademia-tomo1.webp";
 import spyXFamily from "../../assets/MangaImages/spyxfamily-tomo1.webp";
 import komiSan from "../../assets/MangaImages/komisan-tomo1.webp";
+import bluelock from "../../assets/MangaImages/bluelock-tomo1.webp";
+import life from "../../assets/MangaImages/life-tomo1.jpg";
+import kasane from "../../assets/MangaImages/kasane-tomo1.png";
+import liargame from "../../assets/MangaImages/liargame-tomo1.png";
 
-export const mangas = [
+export const allMangas = [
   {
     id: 1,
     title: "DEMON SLAYER - 01",
-    category: "shonen",
+    category: "acción",
     stock: 12,
     price: 1000,
     img: demonSlayer,
@@ -20,7 +24,7 @@ export const mangas = [
   {
     id: 2,
     title: "CHAINSAW-MAN - 01",
-    category: "shonen",
+    category: "acción",
     stock: 7,
     price: 1250,
     img: chainsawMan,
@@ -31,7 +35,7 @@ export const mangas = [
   {
     id: 3,
     title: "KAGUYA-SAMA:LOVE IS WAR - 01",
-    category: "seinen",
+    category: "comedia",
     price: 1300,
     stock: 6,
     img: kaguyaSama,
@@ -42,7 +46,7 @@ export const mangas = [
   {
     id: 4,
     title: "MY HERO ACADEMIA - 01",
-    category: "shonen",
+    category: "acción",
     stock: 10,
     price: 1200,
     img: myHeroAcademia,
@@ -53,7 +57,7 @@ export const mangas = [
   {
     id: 5,
     title: "SPY X FAMILY - 01",
-    category: "shonen",
+    category: "comedia",
     stock: 17,
     price: 1500,
     img: spyXFamily,
@@ -64,12 +68,56 @@ export const mangas = [
   {
     id: 6,
     title: "KOMI-SAN NO PUEDE COMUNICARSE - 01",
-    category: "seinen",
+    category: "comedia",
     stock: 4,
     price: 2500,
     img: komiSan,
     about:
       "Komi-san es la chica hermosa y admirable de la que nadie puede es capaz de apartar la vista. Casi toda la escuela la ve como la belleza fría que está fuera de su alcance, pero Tadano Hitohito sabe la verdad: ella es realmente mala para comunicarse con los demás.",
+    quantity: 1,
+  },
+  {
+    id: 7,
+    title: "BLUE LOCK - 01",
+    category: "deporte",
+    stock: 12,
+    price: 1350,
+    img: bluelock,
+    about:
+      "El delantero Yoichi Isagi perdió la oportunidad de ir al campeonato nacional de escuelas secundarias porque pasó el balón a su compañero de equipo, quien desperdicio la oportunidad de anotar, en lugar de disparar él mismo encontrandose en una mejor posición. Isagi es uno de los 300 delanteros sub-18 elegidos por Jinpachi Ego, un hombre contratado por la Asociación de Fútbol de Japón después de la Copa Mundial de la FIFA 2018, para guiar a Japón a ganar la Copa del Mundo al destruir el fútbol japonés. El plan de Ego es aislar a los 300 delanteros en una institución similar a una prisión llamada Blue Lock, con el fin de crear el delantero egoista más grande del mundo, que ha faltado en el fútbol japonés.",
+    quantity: 1,
+  },
+  {
+    id: 8,
+    title: "LIFE - 01",
+    category: "drama",
+    stock: 12,
+    price: 1350,
+    img: life,
+    about:
+      "Ayumu, la protagonista de esta historia es una adolescente promedio a punto de presentar los exámenes para ingresar al instituto, por lo que le pide ayuda a su mejor amiga, quien por resultados adversos termina alejándose de ella. Esta situación le genera una gran tristeza a Ayumu, empujándola a la depresión, a tal punto de querer atentar contra su vida.",
+    quantity: 1,
+  },
+  {
+    id: 9,
+    title: "KASANE - 01",
+    category: "drama",
+    stock: 12,
+    price: 1750,
+    img: kasane,
+    about:
+      "Este manga narra la historia de Kasane, una chica con un aspecto poco agraciado y desagradable que, a raíz de ello, ha sufrido acoso, burlas y rechazo de las personas de su entorno. Antes de morir, su madre, una hermosa y famosa actriz, le dejó un pintalabios y le dijo que si se sentía sola o rechazada usara el pintalabios y besara aquello que tanto deseaba.",
+    quantity: 1,
+  },
+  {
+    id: 10,
+    title: "LIAR GAME - 01",
+    category: "drama",
+    stock: 12,
+    price: 1750,
+    img: liargame,
+    about:
+      "Narra la historia de una honesta chica llamada Nao, quien un día recibe un paquete con una gran cantidad de dinero junto a un mensaje donde le indican que ha sido seleccionada para participar en “el juego del mentiroso”, en el cual el objetivo es engañar a su contrincante para obtener su maletín y el dinero dentro de él, o de lo contrario al perder el suyo adquirirá una gran deuda equivalente a 100 millones de yenes.",
     quantity: 1,
   },
 ];
