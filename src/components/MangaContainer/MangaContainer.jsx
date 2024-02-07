@@ -21,7 +21,7 @@ export default function MangaContainer({ manga, setCart, cart }) {
     <View key={manga.id} style={styles.mangaContainer}>
       <Image style={styles.mangaImage} source={manga.img} />
       <Text style={styles.titleManga}>{manga.title}</Text>
-      <Text>Categoría: {manga.category}</Text>
+      <Text style={styles.categoryTitle}>Categoría: {manga.category}</Text>
       <View style={styles.priceAndStock}>
         <Text>${manga.price}</Text>
         <Text>Stock: {manga.stock}</Text>
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontWeight: "bold",
     paddingTop: 10,
+    fontFamily: "MontserratBold",
   },
   button: {
     backgroundColor: "#A5243D",
@@ -69,5 +70,8 @@ const styles = StyleSheet.create({
   textButton: {
     color: "#F3F7F6",
     fontSize: 16,
+  },
+  categoryTitle: {
+    fontFamily: "InterRegular",
   },
 });

@@ -17,11 +17,9 @@ export default function MangasCategorized({ category }) {
 
 const styles = StyleSheet.create({
   title: {
-    color: "black",
     fontSize: 40,
     alignSelf: "center",
-    fontWeight: "bold",
-    fontFamily: "InterRegular",
+    fontFamily: "InterBold",
   },
   container: {
     marginTop: Constants.statusBarHeight,
