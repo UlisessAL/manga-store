@@ -7,7 +7,10 @@ import komiSan from "../../assets/MangaImages/komisan-tomo1.webp";
 import bluelock from "../../assets/MangaImages/bluelock-tomo1.webp";
 import life from "../../assets/MangaImages/life-tomo1.jpg";
 import kasane from "../../assets/MangaImages/kasane-tomo1.png";
+import haikyu from "../../assets/MangaImages/haikyu-tomo1.webp";
 import liargame from "../../assets/MangaImages/liargame-tomo1.png";
+import slamDunk from "../../assets/MangaImages/slamdunk-tomo1.jpg";
+import captaintsubasa from "../../assets/MangaImages/captaintsubasa-tomo1.jpeg";
 
 export const allMangas = [
   {
@@ -118,6 +121,39 @@ export const allMangas = [
     img: liargame,
     about:
       "Narra la historia de una honesta chica llamada Nao, quien un día recibe un paquete con una gran cantidad de dinero junto a un mensaje donde le indican que ha sido seleccionada para participar en “el juego del mentiroso”, en el cual el objetivo es engañar a su contrincante para obtener su maletín y el dinero dentro de él, o de lo contrario al perder el suyo adquirirá una gran deuda equivalente a 100 millones de yenes.",
+    quantity: 1,
+  },
+  {
+    id: 11,
+    title: "HAIKYU!! - 01",
+    category: "deporte",
+    stock: 2,
+    price: 1350,
+    img: haikyu,
+    about:
+      "Shoyo Hinata es un estudiante que se fanatiza con el vóley después de ver un partido en el que la rompía un jugador petiso como él. Esto lo inspira a seguir sus pasos y convertirse en un as aunque tenga que arrancar bien de abajo.",
+    quantity: 1,
+  },
+  {
+    id: 12,
+    title: "SLAM DUNK - 01",
+    category: "deporte",
+    stock: 5,
+    price: 3350,
+    img: slamDunk,
+    about:
+      "Hanamichi tendrá tres grandes problemas para conquistar a la dulce y amable Haruko: su compañero de equipo y rival a muerte, el super-habilidoso Kaede Rukawa (del que ella está enamorada); el estrictísimo capitán del equipo (que por cierto es hermano de la mina en cuestión); y el problema más difícil de superar: su explosivo carácter.",
+    quantity: 1,
+  },
+  {
+    id: 13,
+    title: "CAPTAIN TSUBASA - 01",
+    category: "deporte",
+    stock: 7,
+    price: 5150,
+    img: captaintsubasa,
+    about:
+      "La historia cuenta la vida de Tsubasa Ozora, un pibe con un fanatismo demencial por el fútbol que sueña con entrenar en Brasil y ser campeón del mundo con la selección japonesa. Cuando una pelota de fútbol le salva la vida literalmente, su hobby se vuelve una obsesión y así comienza su camino a la gloria.",
     quantity: 1,
   },
 ];
