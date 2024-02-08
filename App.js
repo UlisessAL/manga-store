@@ -10,6 +10,7 @@ import { fonts } from "./src/global/fonts";
 export default function App() {
   const [categorySelected, setCategorySelected] = useState("");
   const [fontsLoaded] = useFonts(fonts);
+  const [cart, setCart] = useState([]);
 
   if (!fontsLoaded) {
     return null;
@@ -18,7 +19,12 @@ export default function App() {
   return (
     <View style={styles.container}>
       {categorySelected ? (
-        <MangasCategorized category={categorySelected} />
+        <MangasCategorized
+          category={categorySelected}
+          setCategorySelected={setCategorySelected}
+          cart={cart}
+          setCart={setCart}
+        />
       ) : (
         <Home setCategorySelected={setCategorySelected} />
       )}

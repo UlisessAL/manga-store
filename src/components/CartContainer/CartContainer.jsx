@@ -6,12 +6,15 @@ import {
   ScrollView,
   Image,
   Pressable,
+  useWindowDimensions,
 } from "react-native";
 import ModalRemove from "../ModalRemove/ModalRemove";
 
 export default function CartContainer({ cart, setCart }) {
   const [isVisible, setIsVisible] = useState(false);
   const [mangaSelected, setMangaSelected] = useState({});
+  const { width } = useWindowDimensions();
+
   const handleRemove = (mangaId) => {
     let newCart = cart.filter((manga) => manga.id !== mangaId);
     setCart(newCart);
@@ -21,8 +24,20 @@ export default function CartContainer({ cart, setCart }) {
     setMangaSelected(manga);
   };
 
+  const isSmallDevice = width <= 400;
+
+  const stylesContainer = [
+    styles.container,
+    isSmallDevice && styles.containerSmall,
+  ];
+
+  const stylesMangaContainer = [
+    styles.mangaContainer,
+    isSmallDevice && styles.mangaContainerSmall,
+  ];
+
   return (
-    <View style={styles.container}>
+    <View style={stylesContainer}>
       {cart.length === 0 ? (
         <Text style={styles.title}>Tu carrito esta vacío</Text>
       ) : (
@@ -31,7 +46,7 @@ export default function CartContainer({ cart, setCart }) {
 
       <ScrollView>
         {cart.map((manga) => (
-          <View style={styles.mangaContainer} key={manga.id}>
+          <View style={stylesMangaContainer} key={manga.id}>
             <Image source={manga.img} style={styles.image} />
             <View style={styles.details}>
               <Text style={styles.mangaTitle}>{manga.title}</Text>
@@ -104,5 +119,12 @@ const styles = StyleSheet.create({
   },
   price: {
     fontWeight: "bold",
+  },
+  containerSmall: {
+    height: 300,
+  },
+  mangaContainerSmall: {
+    gap: 0,
+    width: 350,
   },
 });
