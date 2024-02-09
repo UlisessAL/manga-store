@@ -3,7 +3,12 @@ import MangaContainer from "../MangaContainer/MangaContainer";
 import { allMangas } from "../../dataMangas/dataMangas";
 import { useEffect, useState } from "react";
 import Search from "../Search/Search";
-export default function ItemListCategories({ setCart, cart, category }) {
+export default function ItemListCategories({
+  setCart,
+  cart,
+  category,
+  setProductDetailId,
+}) {
   const [mangas, setMangas] = useState([]);
   const [keyword, setKeyword] = useState("");
 
@@ -33,6 +38,7 @@ export default function ItemListCategories({ setCart, cart, category }) {
             key={manga.id}
             setCart={setCart}
             cart={cart}
+            setProductDetailId={setProductDetailId}
           />
         )}
         keyExtractor={(item) => item.id}

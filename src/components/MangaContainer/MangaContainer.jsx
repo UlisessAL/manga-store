@@ -1,6 +1,18 @@
 import { useState } from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
-export default function MangaContainer({ manga, setCart, cart }) {
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Pressable,
+} from "react-native";
+export default function MangaContainer({
+  manga,
+  setCart,
+  cart,
+  setProductDetailId,
+}) {
   const [buttonTitle, setButtonTitle] = useState("Agregar al carrito");
   const handleAddToCart = () => {
     let isInCart = cart.findIndex((itemInCart) => itemInCart.id === manga.id);
@@ -18,7 +30,11 @@ export default function MangaContainer({ manga, setCart, cart }) {
     }, 2000);
   };
   return (
-    <View key={manga.id} style={styles.mangaContainer}>
+    <Pressable
+      onPress={() => setProductDetailId(manga.id)}
+      key={manga.id}
+      style={styles.mangaContainer}
+    >
       <Image style={styles.mangaImage} source={manga.img} />
       <Text style={styles.titleManga}>{manga.title}</Text>
       <Text style={styles.categoryTitle}>Categoría: {manga.category}</Text>
@@ -29,7 +45,7 @@ export default function MangaContainer({ manga, setCart, cart }) {
       <TouchableOpacity style={styles.button} onPress={handleAddToCart}>
         <Text style={styles.textButton}>{buttonTitle}</Text>
       </TouchableOpacity>
-    </View>
+    </Pressable>
   );
 }
 
