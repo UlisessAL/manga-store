@@ -1,9 +1,11 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 import Card from "../../Card/Card";
 import { colors } from "../../../global/colors";
-const CategoryItem = ({ category, setCategorySelected }) => {
+const CategoryItem = ({ category, navigation }) => {
   return (
-    <Pressable onPress={() => setCategorySelected(category)}>
+    <Pressable
+      onPress={() => navigation.navigate("MangasCategorized", { category })}
+    >
       <Card style={styles.container}>
         <Text style={styles.text}>{category.toUpperCase()}</Text>
       </Card>

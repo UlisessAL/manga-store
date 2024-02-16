@@ -1,7 +1,7 @@
 import { FlatList, StyleSheet, View } from "react-native";
 import categories from "../../dataMangas/categories.json";
 import CategoryItem from "./CategoryItem/CategoryItem";
-const Categories = ({ setCategorySelected }) => {
+const Categories = ({ navigation }) => {
   return (
     <View style={styles.containerCategories}>
       <View style={styles.container}>
@@ -9,10 +9,7 @@ const Categories = ({ setCategorySelected }) => {
           data={categories}
           keyExtractor={(category) => category}
           renderItem={({ item: category }) => (
-            <CategoryItem
-              category={category}
-              setCategorySelected={setCategorySelected}
-            />
+            <CategoryItem category={category} navigation={navigation} />
           )}
           ItemSeparatorComponent={ItemSeparator}
         />

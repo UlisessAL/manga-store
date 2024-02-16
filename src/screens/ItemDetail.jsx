@@ -1,29 +1,21 @@
-import { Pressable, ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { useEffect, useState } from "react";
 import { allMangas } from "../dataMangas/dataMangas";
-import { AntDesign } from "@expo/vector-icons";
-import { colors } from "../global/colors";
 import InfoManga from "../components/InfoManga/InfoManga";
 
-const ItemDetail = ({ productDetailId, setProductDetailId, setCart, cart }) => {
+const ItemDetail = ({ setCart, cart, navigation, route }) => {
+  const { id } = route.params;
   const [product, setProduct] = useState(null);
-  const findProductWithId = (productDetailId) => {
-    const productFinded = allMangas.find(
-      (product) => product.id === productDetailId
-    );
+  const findProductWithId = (id) => {
+    const productFinded = allMangas.find((product) => product.id === id);
     return setProduct(productFinded);
   };
   useEffect(() => {
-    findProductWithId(productDetailId);
+    findProductWithId(id);
   }, []);
 
   return (
     <View style={styles.detailContainer}>
-      <View style={styles.containerGoBack}>
-        <Pressable onPress={() => setProductDetailId(0)} style={styles.goBack}>
-          <AntDesign name="leftcircleo" size={30} color="black" />
-        </Pressable>
-      </View>
       {product && (
         <ScrollView contentContainerStyle={styles.container}>
           <InfoManga product={product} cart={cart} setCart={setCart} />
@@ -39,14 +31,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
   },
-  goBack: {
-    paddingLeft: 25,
-  },
   detailContainer: {
     flex: 1,
-  },
-  containerGoBack: {
-    backgroundColor: colors.ashGray,
-    padding: 5,
   },
 });

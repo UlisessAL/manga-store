@@ -9,36 +9,23 @@ import {
 import Constants from "expo-constants";
 import ShowCart from "../components/CartContainer/ShowCart";
 import ItemListCategories from "../components/ItemListCategories/ItemListCategories";
-import { AntDesign } from "@expo/vector-icons";
-import { colors } from "../global/colors";
+import { useState } from "react";
 
-export default function MangasCategorized({
-  category,
-  setCategorySelected,
-  setCart,
-  cart,
-  setProductDetailId,
-}) {
+export default function MangasCategorized({ navigation, route }) {
+  const { category } = route.params;
   const { width } = useWindowDimensions();
   const isSmallDevice = width <= 400;
   const stylesTitle = [styles.title, isSmallDevice && styles.titleSmall];
+  const [cart, setCart] = useState([]);
 
   return (
     <View style={styles.container}>
-      <View style={styles.containerGoBack}>
-        <Pressable
-          onPress={() => setCategorySelected("")}
-          style={styles.goBack}
-        >
-          <AntDesign name="leftcircleo" size={30} color="black" />
-        </Pressable>
-      </View>
       <Text style={stylesTitle}>Tienda de mangas</Text>
       <ItemListCategories
         category={category}
         setCart={setCart}
         cart={cart}
-        setProductDetailId={setProductDetailId}
+        navigation={navigation}
       />
       <ShowCart cart={cart} setCart={setCart} />
     </View>
@@ -61,13 +48,5 @@ const styles = StyleSheet.create({
   },
   titleSmall: {
     fontSize: 20,
-  },
-  goBack: {
-    paddingLeft: 25,
-    width: 60,
-  },
-  containerGoBack: {
-    backgroundColor: colors.ashGray,
-    padding: 5,
   },
 });

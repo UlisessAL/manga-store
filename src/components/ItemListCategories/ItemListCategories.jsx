@@ -7,7 +7,7 @@ export default function ItemListCategories({
   setCart,
   cart,
   category,
-  setProductDetailId,
+  navigation,
 }) {
   const [mangas, setMangas] = useState([]);
   const [keyword, setKeyword] = useState("");
@@ -38,7 +38,7 @@ export default function ItemListCategories({
             key={manga.id}
             setCart={setCart}
             cart={cart}
-            setProductDetailId={setProductDetailId}
+            navigation={navigation}
           />
         )}
         keyExtractor={(item) => item.id}

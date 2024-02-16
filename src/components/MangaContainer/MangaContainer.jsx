@@ -7,12 +7,7 @@ import {
   TouchableOpacity,
   Pressable,
 } from "react-native";
-export default function MangaContainer({
-  manga,
-  setCart,
-  cart,
-  setProductDetailId,
-}) {
+export default function MangaContainer({ manga, setCart, cart, navigation }) {
   const [buttonTitle, setButtonTitle] = useState("Agregar al carrito");
   const handleAddToCart = () => {
     let isInCart = cart.findIndex((itemInCart) => itemInCart.id === manga.id);
@@ -31,7 +26,7 @@ export default function MangaContainer({
   };
   return (
     <Pressable
-      onPress={() => setProductDetailId(manga.id)}
+      onPress={() => navigation.navigate("ItemDetail", { id: manga.id })}
       key={manga.id}
       style={styles.mangaContainer}
     >
