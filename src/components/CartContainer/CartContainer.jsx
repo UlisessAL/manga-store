@@ -4,13 +4,12 @@ import {
   Text,
   StyleSheet,
   ScrollView,
-  Image,
   Pressable,
   useWindowDimensions,
 } from "react-native";
-import ModalRemove from "../ModalRemove/ModalRemove";
+import CartItem from "./CartItem";
 
-export default function CartContainer({ cart, setCart }) {
+export default function CartContainer({ cart, setCart, price }) {
   const [isVisible, setIsVisible] = useState(false);
   const [mangaSelected, setMangaSelected] = useState({});
   const { width } = useWindowDimensions();
@@ -19,21 +18,12 @@ export default function CartContainer({ cart, setCart }) {
     let newCart = cart.filter((manga) => manga.id !== mangaId);
     setCart(newCart);
   };
-  const handleSelect = (manga) => {
-    setIsVisible(!isVisible);
-    setMangaSelected(manga);
-  };
 
   const isSmallDevice = width <= 400;
 
   const stylesContainer = [
     styles.container,
     isSmallDevice && styles.containerSmall,
-  ];
-
-  const stylesMangaContainer = [
-    styles.mangaContainer,
-    isSmallDevice && styles.mangaContainerSmall,
   ];
 
   return (
@@ -44,41 +34,31 @@ export default function CartContainer({ cart, setCart }) {
         <Text style={styles.title}>Tu carrito:</Text>
       )}
 
-      <ScrollView>
+      <ScrollView style={styles.scrollView}>
         {cart.map((manga) => (
-          <View style={stylesMangaContainer} key={manga.id}>
-            <Image source={manga.img} style={styles.image} />
-            <View style={styles.details}>
-              <Text style={styles.mangaTitle}>{manga.title}</Text>
-              <View style={styles.priceAndQuantity}>
-                <Text style={styles.price}>${manga.price}</Text>
-                <Text>Cantidad:{manga.quantity}</Text>
-              </View>
-            </View>
-
-            <Pressable
-              style={styles.removeItem}
-              onPress={() => handleSelect(manga)}
-            >
-              <Text style={styles.deleteButtonText}>Eliminar</Text>
-            </Pressable>
-            <ModalRemove
-              isVisible={isVisible}
-              mangaId={mangaSelected.id}
-              handleRemove={handleRemove}
-              setIsVisible={setIsVisible}
-              mangaName={mangaSelected.title}
-            />
-          </View>
+          <CartItem
+            manga={manga}
+            isVisible={isVisible}
+            mangaSelected={mangaSelected}
+            handleRemove={handleRemove}
+            setIsVisible={setIsVisible}
+            setMangaSelected={setMangaSelected}
+            width={width}
+          />
         ))}
       </ScrollView>
+      <View style={styles.totalPriceContainer}>
+        <Text style={{ fontWeight: "bold" }}>Total: ${price}</Text>
+        <Pressable style={styles.buyItems}>
+          <Text style={{ color: "white" }}>Comprar</Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: 500,
     alignItems: "center",
     paddingTop: 30,
   },
@@ -93,8 +73,8 @@ const styles = StyleSheet.create({
     width: 80,
     objectFit: "contain",
   },
-  removeItem: {
-    backgroundColor: "red",
+  buyItems: {
+    backgroundColor: "blue",
     padding: 10,
     borderRadius: 10,
   },
@@ -120,11 +100,19 @@ const styles = StyleSheet.create({
   price: {
     fontWeight: "bold",
   },
-  containerSmall: {
-    height: 300,
-  },
   mangaContainerSmall: {
     gap: 0,
     width: 350,
+  },
+  scrollView: {
+    maxHeight: "85%",
+  },
+  totalPriceContainer: {
+    padding: 5,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    width: "80%",
+    alignItems: "center",
+    borderTopWidth: 1,
   },
 });

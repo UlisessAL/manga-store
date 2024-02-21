@@ -3,11 +3,9 @@ import {
   Text,
   StyleSheet,
   useWindowDimensions,
-  Pressable,
   Platform,
 } from "react-native";
 import Constants from "expo-constants";
-import ShowCart from "../components/CartContainer/ShowCart";
 import ItemListCategories from "../components/ItemListCategories/ItemListCategories";
 import { useState } from "react";
 
@@ -27,7 +25,6 @@ export default function MangasCategorized({ navigation, route }) {
         cart={cart}
         navigation={navigation}
       />
-      <ShowCart cart={cart} setCart={setCart} />
     </View>
   );
 }

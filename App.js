@@ -2,7 +2,7 @@ import { Platform, SafeAreaView, StyleSheet } from "react-native";
 import Constants from "expo-constants";
 import { useFonts } from "expo-font";
 import { fonts } from "./src/global/fonts";
-import Navigator from "./src/Navigation/Navigator";
+import TabNavigation from "./src/Navigation/TabNavigation";
 
 export default function App() {
   const [fontsLoaded] = useFonts(fonts);
@@ -13,7 +13,7 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Navigator />
+      <TabNavigation />
     </SafeAreaView>
   );
 }
