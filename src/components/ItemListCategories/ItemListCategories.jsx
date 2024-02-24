@@ -1,22 +1,17 @@
 import { FlatList, StyleSheet } from "react-native";
 import MangaContainer from "../MangaContainer/MangaContainer";
-import { allMangas } from "../../dataMangas/dataMangas";
 import { useEffect, useState } from "react";
 import Search from "../Search/Search";
-export default function ItemListCategories({
-  setCart,
-  cart,
-  category,
-  navigation,
-}) {
+import { useSelector } from "react-redux";
+export default function ItemListCategories({ setCart, cart, navigation }) {
   const [mangas, setMangas] = useState([]);
   const [keyword, setKeyword] = useState("");
+  const productsFilteredByCategory = useSelector(
+    (state) => state.shopReducer.value.productsFilteredByCategory
+  );
 
   const filterMangas = () => {
-    const newProducts = allMangas.filter(
-      (manga) => manga.category === category
-    );
-    const filteredProducts = newProducts.filter((manga) =>
+    const filteredProducts = productsFilteredByCategory.filter((manga) =>
       manga.title.includes(keyword)
     );
     setMangas(filteredProducts);
@@ -24,7 +19,7 @@ export default function ItemListCategories({
 
   useEffect(() => {
     filterMangas();
-  }, [category, keyword]);
+  }, [productsFilteredByCategory, keyword]);
 
   return (
     <>

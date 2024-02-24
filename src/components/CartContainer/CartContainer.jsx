@@ -3,9 +3,9 @@ import {
   View,
   Text,
   StyleSheet,
-  ScrollView,
   Pressable,
   useWindowDimensions,
+  FlatList,
 } from "react-native";
 import CartItem from "./CartItem";
 
@@ -31,28 +31,34 @@ export default function CartContainer({ cart, setCart, price }) {
       {cart.length === 0 ? (
         <Text style={styles.title}>Tu carrito esta vacío</Text>
       ) : (
-        <Text style={styles.title}>Tu carrito:</Text>
-      )}
-
-      <ScrollView style={styles.scrollView}>
-        {cart.map((manga) => (
-          <CartItem
-            manga={manga}
-            isVisible={isVisible}
-            mangaSelected={mangaSelected}
-            handleRemove={handleRemove}
-            setIsVisible={setIsVisible}
-            setMangaSelected={setMangaSelected}
-            width={width}
+        <>
+          <Text style={styles.title}>Tu carrito:</Text>
+          <FlatList
+            style={styles.scrollView}
+            data={cart}
+            renderItem={({ item: manga }) => (
+              <CartItem
+                manga={manga}
+                isVisible={isVisible}
+                mangaSelected={mangaSelected}
+                handleRemove={handleRemove}
+                setIsVisible={setIsVisible}
+                setMangaSelected={setMangaSelected}
+                width={width}
+              />
+            )}
+            keyExtractor={(item) => item.id}
+            numColumns={1}
           />
-        ))}
-      </ScrollView>
-      <View style={styles.totalPriceContainer}>
-        <Text style={{ fontWeight: "bold" }}>Total: ${price}</Text>
-        <Pressable style={styles.buyItems}>
-          <Text style={{ color: "white" }}>Comprar</Text>
-        </Pressable>
-      </View>
+
+          <View style={styles.totalPriceContainer}>
+            <Text style={{ fontWeight: "bold" }}>Total: ${price}</Text>
+            <Pressable style={styles.buyItems}>
+              <Text style={{ color: "white" }}>Comprar</Text>
+            </Pressable>
+          </View>
+        </>
+      )}
     </View>
   );
 }

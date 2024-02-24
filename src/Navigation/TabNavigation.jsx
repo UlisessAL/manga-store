@@ -70,7 +70,7 @@ export default function TabNavigation() {
                     color={focused ? "black" : "grey"}
                   />
                   <Text style={{ color: focused ? "black" : "grey" }}>
-                    Ordenés
+                    Ordenes
                   </Text>
                 </View>
               );

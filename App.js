@@ -3,6 +3,8 @@ import Constants from "expo-constants";
 import { useFonts } from "expo-font";
 import { fonts } from "./src/global/fonts";
 import TabNavigation from "./src/Navigation/TabNavigation";
+import { Provider } from "react-redux";
+import Store from "./src/Store";
 
 export default function App() {
   const [fontsLoaded] = useFonts(fonts);
@@ -12,9 +14,11 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <TabNavigation />
-    </SafeAreaView>
+    <Provider store={Store}>
+      <SafeAreaView style={styles.container}>
+        <TabNavigation />
+      </SafeAreaView>
+    </Provider>
   );
 }
 

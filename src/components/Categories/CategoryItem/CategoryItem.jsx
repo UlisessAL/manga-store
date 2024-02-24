@@ -1,10 +1,16 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 import Card from "../../Card/Card";
 import { colors } from "../../../global/colors";
+import { useDispatch } from "react-redux";
+import { setCategorySelected } from "../../../features/shopSlice/shopSlice";
 const CategoryItem = ({ category, navigation }) => {
+  const dispatch = useDispatch();
   return (
     <Pressable
-      onPress={() => navigation.navigate("MangasCategorized", { category })}
+      onPress={() => {
+        dispatch(setCategorySelected(category));
+        navigation.navigate("MangasCategorized");
+      }}
     >
       <Card style={styles.container}>
         <Text style={styles.text}>{category.toUpperCase()}</Text>

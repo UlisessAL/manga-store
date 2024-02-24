@@ -3,9 +3,13 @@ import Home from "../screens/Home";
 import ItemDetail from "../screens/ItemDetail";
 import MangasCategorized from "../screens/MangasCategorized";
 import Header from "../components/Header/Header";
+import { useSelector } from "react-redux";
 
 const ShopStack = () => {
   const Stack = createNativeStackNavigator();
+  const categorySelected = useSelector(
+    (state) => state.shopReducer.value.categorySelected
+  );
 
   return (
     <Stack.Navigator
@@ -18,7 +22,7 @@ const ShopStack = () => {
                 route.name === "Home"
                   ? "Categorías"
                   : route.name === "MangasCategorized"
-                  ? route.params.category.toUpperCase()
+                  ? categorySelected.toUpperCase()
                   : "Detalle"
               }
             />
