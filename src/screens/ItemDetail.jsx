@@ -1,19 +1,9 @@
 import { ActivityIndicator, ScrollView, StyleSheet, View } from "react-native";
-import { useEffect, useState } from "react";
-import { allMangas } from "../dataMangas/dataMangas";
 import InfoManga from "../components/InfoManga/InfoManga";
 import { useGetProductByIdQuery } from "../services/shopService";
 
 const ItemDetail = ({ route }) => {
   const { id } = route.params;
-  // const [product, setProduct] = useState(null);
-  // const findProductWithId = (id) => {
-  //   const productFinded = allMangas.find((product) => product.id === id);
-  //   return setProduct(productFinded);
-  // };
-  // useEffect(() => {
-  //   findProductWithId(id);
-  // }, []);
 
   const { data: product, isLoading, error } = useGetProductByIdQuery(id);
 
