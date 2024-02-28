@@ -9,16 +9,10 @@ import {
 } from "react-native";
 import CartItem from "./CartItem";
 
-export default function CartContainer({ cart, setCart, price }) {
+export default function CartContainer({ cart, price }) {
   const [isVisible, setIsVisible] = useState(false);
   const [mangaSelected, setMangaSelected] = useState({});
   const { width } = useWindowDimensions();
-
-  const handleRemove = (mangaId) => {
-    let newCart = cart.filter((manga) => manga.id !== mangaId);
-    setCart(newCart);
-  };
-
   const isSmallDevice = width <= 400;
 
   const stylesContainer = [
@@ -41,7 +35,6 @@ export default function CartContainer({ cart, setCart, price }) {
                 manga={manga}
                 isVisible={isVisible}
                 mangaSelected={mangaSelected}
-                handleRemove={handleRemove}
                 setIsVisible={setIsVisible}
                 setMangaSelected={setMangaSelected}
                 width={width}

@@ -1,14 +1,16 @@
 import { View, Text, Modal, Pressable, StyleSheet } from "react-native";
+import { useDispatch } from "react-redux";
+import { removeItem } from "../../features/shopSlice/cartSlice";
 export default function ModalRemove({
   isVisible,
   mangaId,
-  handleRemove,
   setIsVisible,
   mangaName,
 }) {
+  const dispatch = useDispatch();
   const handleRemoveMangaAndModal = () => {
     setIsVisible(!isVisible);
-    handleRemove(mangaId);
+    dispatch(removeItem(mangaId));
   };
 
   return (

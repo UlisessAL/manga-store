@@ -4,7 +4,6 @@ const CartItem = ({
   manga,
   isVisible,
   mangaSelected,
-  handleRemove,
   setIsVisible,
   setMangaSelected,
   width,
@@ -20,10 +19,9 @@ const CartItem = ({
     setIsVisible(!isVisible);
     setMangaSelected(manga);
   };
-
   return (
     <View style={stylesMangaContainer} key={manga.id}>
-      <Image source={manga.img} style={styles.image} />
+      <Image source={{ uri: manga.img }} style={styles.image} />
       <View style={styles.details}>
         <Text style={styles.mangaTitle}>{manga.title}</Text>
         <View style={styles.priceAndQuantity}>
@@ -38,7 +36,6 @@ const CartItem = ({
       <ModalRemove
         isVisible={isVisible}
         mangaId={mangaSelected.id}
-        handleRemove={handleRemove}
         setIsVisible={setIsVisible}
         mangaName={mangaSelected.title}
       />

@@ -1,17 +1,29 @@
-import { FlatList, StyleSheet } from "react-native";
+import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
 import MangaContainer from "../MangaContainer/MangaContainer";
 import { useEffect, useState } from "react";
 import Search from "../Search/Search";
 import { useSelector } from "react-redux";
-export default function ItemListCategories({ setCart, cart, navigation }) {
+import { useGetProductsByCategoryQuery } from "../../services/shopService";
+export default function ItemListCategories({ navigation }) {
   const [mangas, setMangas] = useState([]);
   const [keyword, setKeyword] = useState("");
-  const productsFilteredByCategory = useSelector(
-    (state) => state.shopReducer.value.productsFilteredByCategory
+
+  const category = useSelector(
+    (state) => state.shopReducer.value.categorySelected
   );
 
+  const {
+    data: productsFilteredByCategory,
+    isLoading,
+    error,
+  } = useGetProductsByCategoryQuery(category);
+
   const filterMangas = () => {
-    const filteredProducts = productsFilteredByCategory.filter((manga) =>
+    const newData = [];
+    for (const key in productsFilteredByCategory) {
+      newData.push(productsFilteredByCategory[key]);
+    }
+    const filteredProducts = newData.filter((manga) =>
       manga.title.includes(keyword)
     );
     setMangas(filteredProducts);
@@ -24,21 +36,21 @@ export default function ItemListCategories({ setCart, cart, navigation }) {
   return (
     <>
       <Search onSearch={setKeyword} />
-      <FlatList
-        style={styles.mangaContainer}
-        data={mangas}
-        renderItem={({ item: manga }) => (
-          <MangaContainer
-            manga={manga}
-            key={manga.id}
-            setCart={setCart}
-            cart={cart}
-            navigation={navigation}
-          />
-        )}
-        keyExtractor={(item) => item.id}
-        numColumns={2}
-      />
+      {isLoading ? (
+        <ActivityIndicator size="large" color="black" />
+      ) : error ? (
+        <Text>Hubo un error al cargar productos</Text>
+      ) : (
+        <FlatList
+          style={styles.mangaContainer}
+          data={mangas}
+          renderItem={({ item: manga }) => (
+            <MangaContainer manga={manga} navigation={navigation} />
+          )}
+          keyExtractor={(item) => item.id}
+          numColumns={2}
+        />
+      )}
     </>
   );
 }

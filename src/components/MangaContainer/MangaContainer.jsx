@@ -7,18 +7,13 @@ import {
   TouchableOpacity,
   Pressable,
 } from "react-native";
-export default function MangaContainer({ manga, setCart, cart, navigation }) {
+import { useDispatch } from "react-redux";
+import { addItem } from "../../features/shopSlice/cartSlice";
+export default function MangaContainer({ manga, navigation }) {
   const [buttonTitle, setButtonTitle] = useState("Agregar al carrito");
+  const dispatch = useDispatch();
   const handleAddToCart = () => {
-    let isInCart = cart.findIndex((itemInCart) => itemInCart.id === manga.id);
-    let newCart = [...cart];
-
-    if (isInCart !== -1) {
-      newCart[isInCart].quantity += 1;
-      setCart(newCart);
-    } else {
-      setCart((prevState) => [...prevState, manga]);
-    }
+    dispatch(addItem(manga));
     setButtonTitle("Añadido!");
     setTimeout(() => {
       setButtonTitle("Agregar al carrito");
@@ -30,7 +25,7 @@ export default function MangaContainer({ manga, setCart, cart, navigation }) {
       key={manga.id}
       style={styles.mangaContainer}
     >
-      <Image style={styles.mangaImage} source={manga.img} />
+      <Image style={styles.mangaImage} source={{ uri: manga.img }} />
       <Text style={styles.titleManga}>{manga.title}</Text>
       <Text style={styles.categoryTitle}>Categoría: {manga.category}</Text>
       <View style={styles.priceAndStock}>

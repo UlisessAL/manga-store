@@ -1,18 +1,13 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { colors } from "../../global/colors";
 import { useState } from "react";
-const InfoManga = ({ product, cart, setCart }) => {
+import { useDispatch } from "react-redux";
+import { addItem } from "../../features/shopSlice/cartSlice";
+const InfoManga = ({ product }) => {
   const [buttonTitle, setButtonTitle] = useState("Agregar al carrito");
+  const dispatch = useDispatch();
   const handleAddToCart = () => {
-    let isInCart = cart.findIndex((itemInCart) => itemInCart.id === product.id);
-    let newCart = [...cart];
-
-    if (isInCart !== -1) {
-      newCart[isInCart].quantity += 1;
-      setCart(newCart);
-    } else {
-      setCart((prevState) => [...prevState, product]);
-    }
+    dispatch(addItem(product));
     setButtonTitle("Añadido!");
     setTimeout(() => {
       setButtonTitle("Agregar al carrito");
@@ -21,7 +16,7 @@ const InfoManga = ({ product, cart, setCart }) => {
   return (
     <View style={styles.containerAll}>
       <View style={styles.containerImage}>
-        <Image source={product.img} style={styles.image} />
+        <Image source={{ uri: product.img }} style={styles.image} />
       </View>
       <Text style={styles.titleManga}>{product.title}</Text>
       <Text style={styles.aboutManga}>{product.about}</Text>
