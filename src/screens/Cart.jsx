@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cartSlice.value.items);
-
   const totalPrice = useSelector((state) => state.cartSlice.value.total);
 
   return (

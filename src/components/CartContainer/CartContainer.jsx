@@ -8,6 +8,7 @@ import {
   FlatList,
 } from "react-native";
 import CartItem from "./CartItem";
+import { usePostOrderMutation } from "../../services/shopService";
 
 export default function CartContainer({ cart, price }) {
   const [isVisible, setIsVisible] = useState(false);
@@ -19,6 +20,12 @@ export default function CartContainer({ cart, price }) {
     styles.container,
     isSmallDevice && styles.containerSmall,
   ];
+
+  const [triggerPost, result] = usePostOrderMutation();
+
+  const confirmCart = () => {
+    triggerPost({ price, cart, user: "loggedUser" });
+  };
 
   return (
     <View style={stylesContainer}>
@@ -46,7 +53,7 @@ export default function CartContainer({ cart, price }) {
 
           <View style={styles.totalPriceContainer}>
             <Text style={{ fontWeight: "bold" }}>Total: ${price}</Text>
-            <Pressable style={styles.buyItems}>
+            <Pressable style={styles.buyItems} onPress={confirmCart}>
               <Text style={{ color: "white" }}>Comprar</Text>
             </Pressable>
           </View>
