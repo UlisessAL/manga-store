@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
 import { View, Text, StyleSheet } from "react-native";
 import ShopStack from "./ShopStack";
 import CartStack from "./CartStack";
 import { Entypo, AntDesign, FontAwesome5 } from "@expo/vector-icons";
 import OrdersStack from "./OrdersStack";
+import MyProfileStack from "./MyProfileStack";
 
 export default function TabNavigation() {
   const Tab = createBottomTabNavigator();
@@ -70,6 +70,26 @@ export default function TabNavigation() {
                 />
                 <Text style={{ color: focused ? "black" : "grey" }}>
                   Ordenes
+                </Text>
+              </View>
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="MyProfileTab"
+        component={MyProfileStack}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return (
+              <View style={styles.tabContainer}>
+                <FontAwesome5
+                  name="user"
+                  size={24}
+                  color={focused ? "black" : "grey"}
+                />
+                <Text style={{ color: focused ? "black" : "grey" }}>
+                  Perfil
                 </Text>
               </View>
             );

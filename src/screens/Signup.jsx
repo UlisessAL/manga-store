@@ -51,7 +51,6 @@ const Signup = ({ navigation }) => {
   };
 
   useEffect(() => {
-    console.log(result);
     if (result.data) {
       dispatch(setUser(result));
     }
