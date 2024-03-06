@@ -6,15 +6,19 @@ import {
   Pressable,
   useWindowDimensions,
   FlatList,
+  Alert,
 } from "react-native";
 import CartItem from "./CartItem";
 import { usePostOrderMutation } from "../../services/shopService";
+import { useDispatch } from "react-redux";
+import { clearCart } from "../../features/shopSlice/cartSlice";
 
 export default function CartContainer({ cart, price }) {
   const [isVisible, setIsVisible] = useState(false);
   const [mangaSelected, setMangaSelected] = useState({});
   const { width } = useWindowDimensions();
   const isSmallDevice = width <= 400;
+  const dispatch = useDispatch();
 
   const stylesContainer = [
     styles.container,
@@ -22,9 +26,14 @@ export default function CartContainer({ cart, price }) {
   ];
 
   const [triggerPost, result] = usePostOrderMutation();
-
+  console.log("RESULTADO: ", result);
   const confirmCart = () => {
     triggerPost({ price, cart, user: "loggedUser" });
+    if (result.isError === true) {
+      return Alert.alert("Compra rechazada");
+    }
+    dispatch(clearCart());
+    Alert.alert("Compra realizada");
   };
 
   return (
