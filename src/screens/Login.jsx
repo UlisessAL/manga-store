@@ -63,7 +63,10 @@ const Login = ({ navigation }) => {
       {result?.status === "rejected" && (
         <Text style={styles.errorLogin}>Contraseña y/o Email incorrectos</Text>
       )}
-      <SubmitButton title="Ingresar" onPress={onSubmit} />
+      <SubmitButton
+        title={result.isLoading ? "Ingresando..." : "Ingresar"}
+        onPress={onSubmit}
+      />
       <Pressable onPress={() => navigation.navigate("Signup")}>
         <Text style={styles.changeSectionText}>
           ¿No tienes una cuenta? Regístrate

@@ -79,7 +79,10 @@ const Signup = ({ navigation }) => {
         isSecure={true}
         placeholder="*****"
       />
-      <SubmitButton title={"Registrarse"} onPress={onSubmit} />
+      <SubmitButton
+        title={result.isLoading ? "Registrandose..." : "Registrarse"}
+        onPress={onSubmit}
+      />
       <Pressable onPress={() => navigation.navigate("Login")}>
         <Text style={styles.changeSectionText}>
           ¿Ya tienes una cuenta? Inicia sesión

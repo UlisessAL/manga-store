@@ -4,8 +4,7 @@ import { colors } from "../global/colors";
 import { useSelector } from "react-redux";
 
 const MyProfile = ({ navigation }) => {
-  const { imageCamera } = useSelector((state) => state.authReducer.value);
-
+  const { user } = useSelector((state) => state.authReducer.value);
   const { profileImage: image } = useSelector(
     (state) => state.authReducer.value
   );
@@ -29,6 +28,7 @@ const MyProfile = ({ navigation }) => {
           />
         </>
       )}
+      <Text>{user}</Text>
       <Pressable
         style={styles.button}
         onPress={() => navigation.navigate("Image Selector")}
