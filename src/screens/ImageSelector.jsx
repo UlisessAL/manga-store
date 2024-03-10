@@ -41,6 +41,9 @@ const ImageSelector = ({ navigation }) => {
     dispatch(setCameraImage(image));
     dispatch(setProfileImage(image));
     triggerSaveProfileImage({ image, localId });
+    if (result.isError) {
+      Alert.alert("Ocurrio un error al cambiar la foto de perfil");
+    }
     navigation.goBack();
   };
 
