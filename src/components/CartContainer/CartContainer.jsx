@@ -26,7 +26,6 @@ export default function CartContainer({ cart, price }) {
   ];
 
   const [triggerPost, result] = usePostOrderMutation();
-  console.log("RESULTADO: ", result);
   const confirmCart = () => {
     triggerPost({ price, cart, user: "loggedUser" });
     if (result.isError === true) {
