@@ -7,6 +7,7 @@ import { useLoginMutation } from "../services/authService";
 import { useDispatch } from "react-redux";
 import { setUser } from "../features/auth/authSlice";
 import { loginSchema } from "../validations/loginSchema";
+import { insertSession } from "../db";
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,8 +40,15 @@ const Login = ({ navigation }) => {
   };
 
   useEffect(() => {
-    if (result.data) {
-      dispatch(setUser(result));
+    if (result?.data) {
+      dispatch(setUser(result.data));
+      insertSession({
+        email: result.data.email,
+        localId: result.data.localId,
+        token: result.data.idToken,
+      })
+        .then((result) => console.log(result))
+        .catch((err) => console.log("ERROR: ", err.message));
     }
   }, [result]);
 
