@@ -12,6 +12,7 @@ import CartItem from "./CartItem";
 import { usePostOrderMutation } from "../../services/shopService";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../../features/shopSlice/cartSlice";
+import ModalBuy from "../ModalBuy/ModalBuy";
 
 export default function CartContainer({ cart, price }) {
   const [isVisible, setIsVisible] = useState(false);
@@ -20,6 +21,7 @@ export default function CartContainer({ cart, price }) {
   const isSmallDevice = width <= 400;
   const dispatch = useDispatch();
   const { localId } = useSelector((state) => state.authReducer.value);
+  const [isModalBuyVisible, setIsModalBuyVisible] = useState(false);
 
   const stylesContainer = [
     styles.container,
@@ -38,6 +40,11 @@ export default function CartContainer({ cart, price }) {
 
   return (
     <View style={stylesContainer}>
+      <ModalBuy
+        isVisible={isModalBuyVisible}
+        setIsVisible={setIsModalBuyVisible}
+        confirmCart={confirmCart}
+      />
       {cart.length === 0 ? (
         <Text style={styles.title}>Tu carrito esta vacío</Text>
       ) : (
@@ -62,7 +69,10 @@ export default function CartContainer({ cart, price }) {
 
           <View style={styles.totalPriceContainer}>
             <Text style={{ fontWeight: "bold" }}>Total: ${price}</Text>
-            <Pressable style={styles.buyItems} onPress={confirmCart}>
+            <Pressable
+              style={styles.buyItems}
+              onPress={() => setIsModalBuyVisible(true)}
+            >
               <Text style={{ color: "white" }}>Comprar</Text>
             </Pressable>
           </View>
