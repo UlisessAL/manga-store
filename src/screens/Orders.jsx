@@ -30,7 +30,7 @@ const Orders = () => {
       await refetch();
       setRefreshing(false);
     } catch (error) {
-      console.error("Error al recargar los datos:", error);
+      Alert.alert("Error al recargar los datos:", error);
     }
   };
 
