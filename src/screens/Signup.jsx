@@ -7,6 +7,7 @@ import { setUser } from "../features/auth/authSlice";
 import { signupSchema } from "../validations/signupSchema";
 import { useSignUpMutation } from "../services/authService";
 import { colors } from "../global/colors";
+import { insertSession } from "../db";
 
 const Signup = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -51,8 +52,15 @@ const Signup = ({ navigation }) => {
   };
 
   useEffect(() => {
-    if (result.data) {
-      dispatch(setUser(result));
+    if (result?.data) {
+      dispatch(setUser(result.data));
+      insertSession({
+        email: result.data.email,
+        localId: result.data.localId,
+        token: result.data.idToken,
+      })
+        .then((result) => console.log(result))
+        .catch((err) => console.log("ERROR: ", err.message));
     }
   }, [result]);
 
