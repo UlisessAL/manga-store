@@ -21,7 +21,7 @@ const MainNavigator = () => {
           dispatch(setUser(user));
         }
       } catch (error) {
-        console.log(error.message);
+        Alert.alert(error.message);
       }
     })();
   }, [user]);

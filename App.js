@@ -1,4 +1,4 @@
-import { Platform, SafeAreaView, StyleSheet } from "react-native";
+import { Alert, Platform, SafeAreaView, StyleSheet } from "react-native";
 import Constants from "expo-constants";
 import { useFonts } from "expo-font";
 import { fonts } from "./src/global/fonts";
@@ -7,12 +7,9 @@ import Store from "./src/Store";
 import MainNavigator from "./src/Navigation/MainNavigator";
 import { init } from "./src/db";
 
-init()
-  .then(() => console.log("base de datos inicializada"))
-  .catch((err) => {
-    console.log("error");
-    console.log(err);
-  });
+init().catch((err) => {
+  Alert.alert(err);
+});
 
 export default function App() {
   const [fontsLoaded] = useFonts(fonts);

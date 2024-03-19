@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import CartItem from "./CartItem";
 import { usePostOrderMutation } from "../../services/shopService";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../../features/shopSlice/cartSlice";
 
 export default function CartContainer({ cart, price }) {
@@ -19,6 +19,7 @@ export default function CartContainer({ cart, price }) {
   const { width } = useWindowDimensions();
   const isSmallDevice = width <= 400;
   const dispatch = useDispatch();
+  const { localId } = useSelector((state) => state.authReducer.value);
 
   const stylesContainer = [
     styles.container,
@@ -27,7 +28,7 @@ export default function CartContainer({ cart, price }) {
 
   const [triggerPost, result] = usePostOrderMutation();
   const confirmCart = () => {
-    triggerPost({ price, cart, user: "loggedUser" });
+    triggerPost({ price, cart, user: localId });
     if (result.isError === true) {
       return Alert.alert("Compra rechazada");
     }

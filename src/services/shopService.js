@@ -37,6 +37,9 @@ export const shopApi = createApi({
         },
       }),
     }),
+    getOrdersByClientId: builder.query({
+      query: (userId) => `orders.json?orderBy="user"&equalTo="${userId}"`,
+    }),
   }),
 });
 
@@ -48,4 +51,5 @@ export const {
   usePostOrderMutation,
   useGetProfileImageQuery,
   usePostProfileImageMutation,
+  useGetOrdersByClientIdQuery,
 } = shopApi;

@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 import InputForm from "../components/FormComponents/InputForm";
 import { useEffect, useState } from "react";
 import SubmitButton from "../components/FormComponents/SubmitButton";
@@ -58,9 +58,7 @@ const Signup = ({ navigation }) => {
         email: result.data.email,
         localId: result.data.localId,
         token: result.data.idToken,
-      })
-        .then((result) => console.log(result))
-        .catch((err) => console.log("ERROR: ", err.message));
+      }).catch((err) => Alert.alert("ERROR: ", err.message));
     }
   }, [result]);
 
