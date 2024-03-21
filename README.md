@@ -8,6 +8,14 @@ Desarrollada como proyecto final del curso **Desarrollo de Aplicaciones** de **C
 - React Native
 - Firebase: autenticación y base de datos
 - Expo image picker
+- Expo SQLite
+
+## Características de la app
+
+- Tener un login y signup para poseer un perfil propio en la app. (Autenticación Firebase)
+- Persistencia del estado de sesion de cada usuario. (Expo SQLite)
+- Uso de la camara del dispositivo para cambiar la foto de perfil del usuario. (Expo image picker)
+- Visualizar ordenes de compras anteriores con su precio e items. (Base de datos Firebase)
 
 ## Instalación
 
@@ -19,13 +27,6 @@ Instala mi app utilizando git y npm
   npm install
   npm start
 ```
-
-## Características de la app
-
-- Tener un perfil propio en la app.
-- Persistencia del estado de sesion de cada usuario.
-- Uso de la camara del dispositivo para cambiar la foto de perfil del usuario.
-- Visualizar ordenes de compras anteriores con su precio e items.
 
 ### Fotos de la app
 
