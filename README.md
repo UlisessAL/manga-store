@@ -15,7 +15,7 @@ Desarrollada como proyecto final del curso **Desarrollo de Aplicaciones** de **C
 - Tener un login y signup para poseer un perfil propio en la app. (Autenticación Firebase)
 - Persistencia del estado de sesión de cada usuario. (Expo SQLite)
 - Uso de la camara del dispositivo para cambiar la foto de perfil del usuario. (Expo image picker)
-- Visualizar ordenes de compras anteriores con su precio e items. (Base de datos Firebase)
+- Visualizar órdenes de compras anteriores con su precio e items. (Base de datos Firebase)
 
 ## Instalación
 
