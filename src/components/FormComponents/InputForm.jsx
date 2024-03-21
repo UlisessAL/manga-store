@@ -16,7 +16,7 @@ const InputForm = ({ label, error, onChange, isSecure, placeholder }) => {
         placeholder={placeholder}
         value={input}
         onChangeText={onChangeText}
-        secureTextEntry={isSecure} //Para saber si tiene que encriptar el input o no
+        secureTextEntry={isSecure}
       />
       {error ? <Text style={styles.error}>{error}</Text> : null}
     </View>

@@ -1,5 +1,9 @@
 import { useEffect } from "react";
-import { useGetProfileImageQuery } from "../services/shopService";
+import {
+  useGetCategoriesQuery,
+  useGetProductsQuery,
+  useGetProfileImageQuery,
+} from "../services/shopService";
 import AuthStack from "./AuthStack";
 import TabNavigation from "./TabNavigation";
 import { NavigationContainer } from "@react-navigation/native";
@@ -7,11 +11,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { setProfileImage, setUser } from "../features/auth/authSlice";
 import { fetchSession } from "../db";
 import { Alert } from "react-native";
+import { setCategories, setProducts } from "../features/shopSlice/shopSlice";
 const MainNavigator = () => {
   const { user, localId } = useSelector((state) => state.authReducer.value);
   const { data, error } = useGetProfileImageQuery(localId);
+  const { data: products, isLoading } = useGetProductsQuery();
+  const { data: categories } = useGetCategoriesQuery();
 
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setProducts(products));
+    dispatch(setCategories(categories));
+  }, [isLoading]);
+
   useEffect(() => {
     (async () => {
       try {

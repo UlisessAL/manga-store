@@ -62,7 +62,6 @@ const ImageSelector = ({ navigation }) => {
       ) : (
         <>
           <View style={styles.noPhotoContainer}>
-            <Text>No photo to show...</Text>
             <Pressable style={styles.button} onPress={pickImage}>
               <Text style={styles.buttonText}>Tomar una foto</Text>
             </Pressable>

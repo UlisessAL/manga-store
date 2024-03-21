@@ -6,7 +6,7 @@ export default function OrdersStack() {
   return (
     <Stack.Navigator
       initialRouteName="Orders"
-      screenOptions={{ header: () => <Header title="Ordenés" /> }}
+      screenOptions={{ header: () => <Header title="Órdenes" /> }}
     >
       <Stack.Screen name="Orders" component={Orders} />
     </Stack.Navigator>
