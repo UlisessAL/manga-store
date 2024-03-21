@@ -16,7 +16,7 @@ Instala mi app utilizando git y npm
 ```bash
   git clone https://github.com/UlisessAL/manga-store.git
   cd manga-store
-  npm Install
+  npm install
   npm start
 ```
 
