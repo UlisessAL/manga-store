@@ -1,4 +1,5 @@
 import { View, Text, Modal, StyleSheet, Pressable } from "react-native";
+import { colors } from "../../global/colors";
 export default function ModalBuy({ isVisible, setIsVisible, confirmCart }) {
   const handleBuyMangas = () => {
     setIsVisible(!isVisible);
@@ -29,7 +30,7 @@ export default function ModalBuy({ isVisible, setIsVisible, confirmCart }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#f0f0f0",
+    backgroundColor: colors.ashGray,
     alignItems: "center",
     justifyContent: "center",
     height: 300,
@@ -40,6 +41,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     maxWidth: 300,
+    color: "white",
   },
   buttonContainer: {
     flexDirection: "row",

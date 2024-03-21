@@ -3,6 +3,7 @@ import { useGetOrdersByClientIdQuery } from "../services/shopService";
 import { useSelector } from "react-redux";
 import OrderContainer from "../components/OrderContainer/OrderContainer";
 import { useEffect, useState } from "react";
+import { useFocusEffect } from "@react-navigation/native";
 const Orders = () => {
   const { localId } = useSelector((state) => state.authReducer.value);
   const { data, error, refetch } = useGetOrdersByClientIdQuery(localId);
@@ -24,6 +25,19 @@ const Orders = () => {
   useEffect(() => {
     getOrders();
   }, [data]);
+
+  useFocusEffect(() => {
+    const fetchData = async () => {
+      try {
+        await refetch();
+        setRefreshing(false);
+      } catch (error) {
+        Alert.alert("Error al recargar los datos:", error);
+      }
+    };
+
+    fetchData();
+  });
 
   const handleRefresh = async () => {
     try {
